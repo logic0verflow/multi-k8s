@@ -1,0 +1,20 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: chatter-page-tls
+spec:
+  secretName: chatter-page
+  issuerRef: 
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: chatter.page
+  dnsNames:
+    - chatter.page
+    - www.chatter.page
+  acme:
+    config:
+      - http01:
+          inrgessClass: nginx
+        domains:
+          - chatter.page
+          - www.chatter.page
